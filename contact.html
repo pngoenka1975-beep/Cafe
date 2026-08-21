@@ -1,0 +1,478 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reservations - The Rustic Spoon</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container">
+            <div class="nav-content">
+                <div class="logo">
+                    <h1>The Rustic Spoon</h1>
+                    <p>Farm to Table</p>
+                </div>
+                <ul class="nav-menu">
+                    <li><a href="index.html" class="nav-link">Home</a></li>
+                    <li><a href="menu.html" class="nav-link">Menu</a></li>
+                    <li><a href="about.html" class="nav-link">About</a></li>
+                    <li><a href="contact.html" class="nav-link active">Reservations</a></li>
+                </ul>
+                <button class="reserve-btn-nav" onclick="window.location.href='contact.html'">Book a Table</button>
+                <div class="header-actions">
+                    <div class="search-container">
+                        <input type="text" class="search-input" placeholder="Search menu..." id="searchInput">
+                        <button class="search-btn">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <circle cx="11" cy="11" r="8"></circle>
+                                <path d="m21 21-4.35-4.35"></path>
+                            </svg>
+                        </button>
+                    </div>
+                    <button class="theme-toggle" onclick="toggleTheme()" title="Toggle Dark Mode">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" id="themeIcon">
+                            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                        </svg>
+                    </button>
+                    <button class="auth-trigger" type="button" onclick="openAuthModal()">Sign in</button>
+                    <button class="auth-signout-trigger" type="button" onclick="signOutCustomer()" hidden>Log out</button>
+                </div>
+                <div class="hamburger" onclick="toggleMobileMenu()">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Mobile Menu -->
+    <div class="mobile-menu" id="mobileMenu">
+        <ul class="mobile-nav-menu">
+            <li><a href="index.html" class="mobile-nav-link">Home</a></li>
+            <li><a href="menu.html" class="mobile-nav-link">Menu</a></li>
+            <li><a href="about.html" class="mobile-nav-link">About</a></li>
+            <li><a href="contact.html" class="mobile-nav-link">Reservations</a></li>
+            <li><button class="auth-trigger mobile-auth-trigger" type="button" onclick="openAuthModal()">Sign in</button></li>
+            <li><button class="auth-signout-trigger mobile-auth-trigger" type="button" onclick="signOutCustomer()" hidden>Log out</button></li>
+        </ul>
+    </div>
+
+    <!-- Contact Header -->
+    <section class="contact-header">
+        <div class="container">
+            <h1>Reservations & Contact</h1>
+            <p>Book your table or get in touch with us</p>
+        </div>
+    </section>
+
+    <!-- Reservation Section -->
+    <section class="reservation-section">
+        <div class="container">
+            <div class="reservation-content">
+                <div class="reservation-form-container">
+                    <h2>Make a Reservation</h2>
+                    <form class="reservation-form" id="reservationForm" name="reservation-form">
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="name">Full Name *</label>
+                                <input type="text" id="name" name="name" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="email">Email *</label>
+                                <input type="email" id="email" name="email" required>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="phone">Phone Number *</label>
+                                <input type="tel" id="phone" name="phone" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="guests">Number of Guests *</label>
+                                <select id="guests" name="guests" required>
+                                    <option value="">Select guests</option>
+                                    <option value="1">1 Guest</option>
+                                    <option value="2">2 Guests</option>
+                                    <option value="3">3 Guests</option>
+                                    <option value="4">4 Guests</option>
+                                    <option value="5">5 Guests</option>
+                                    <option value="6">6 Guests</option>
+                                    <option value="7">7 Guests</option>
+                                    <option value="8">8+ Guests (Call for larger parties)</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="date">Date *</label>
+                                <input type="date" id="date" name="date" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="time">Time *</label>
+                                <select id="time" name="time" required>
+                                    <option value="">Select time</option>
+                                    <option value="11:00">11:00 AM</option>
+                                    <option value="12:00">12:00 PM</option>
+                                    <option value="13:00">1:00 PM</option>
+                                    <option value="14:00">2:00 PM</option>
+                                    <option value="17:00">5:00 PM</option>
+                                    <option value="18:00">6:00 PM</option>
+                                    <option value="19:00">7:00 PM</option>
+                                    <option value="20:00">8:00 PM</option>
+                                    <option value="21:00">9:00 PM</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="occasions">Special Occasion</label>
+                            <select id="occasions" name="occasions">
+                                <option value="">None</option>
+                                <option value="birthday">Birthday</option>
+                                <option value="anniversary">Anniversary</option>
+                                <option value="business">Business Dinner</option>
+                                <option value="date">Date Night</option>
+                                <option value="other">Other</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="requests">Special Requests</label>
+                            <textarea id="requests" name="requests" rows="3" placeholder="Any dietary restrictions, seating preferences, or special requests..."></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary" id="submitReservation">Request Reservation</button>
+                        <div id="reservationStatus" class="form-status"></div>
+                    </form>
+                </div>
+                <div class="reservation-info">
+                    <h2>Reservation Policies</h2>
+                    <div class="policy-item">
+                        <h3>Confirmation</h3>
+                        <p>You will receive a confirmation email within 24 hours. For same-day reservations, please call us directly.</p>
+                    </div>
+                    <div class="policy-item">
+                        <h3>Cancellation</h3>
+                        <p>Please cancel at least 24 hours in advance. Late cancellations may incur a fee for parties of 6 or more.</p>
+                    </div>
+                    <div class="policy-item">
+                        <h3>Large Parties</h3>
+                        <p>For parties of 8 or more, please call us at (555) 123-4567 to discuss special arrangements and menus.</p>
+                    </div>
+                    <div class="policy-item">
+                        <h3>Private Events</h3>
+                        <p>Interested in hosting a private event? Contact us for information about our private dining space and customized menus.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Information -->
+    <section class="contact-info-section">
+        <div class="container">
+            <div class="section-header">
+                <h2>Get In Touch</h2>
+                <p>We'd love to hear from you</p>
+            </div>
+            <div class="contact-grid">
+                <div class="contact-card">
+                    <div class="contact-icon">
+                        <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+                            <circle cx="12" cy="10" r="3"></circle>
+                        </svg>
+                    </div>
+                    <h3>Location</h3>
+                    <p>123 Farmhouse Road</p>
+                    <p>Countryside Valley, CA 90210</p>
+                    <a href="#" class="contact-link">Get Directions →</a>
+                </div>
+                <div class="contact-card">
+                    <div class="contact-icon">
+                        <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
+                        </svg>
+                    </div>
+                    <h3>Phone</h3>
+                    <p>(555) 123-4567</p>
+                    <p>Available during business hours</p>
+                    <a href="tel:5551234567" class="contact-link">Call Now →</a>
+                </div>
+                <div class="contact-card">
+                    <div class="contact-icon">
+                        <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+                            <polyline points="22,6 12,13 2,6"></polyline>
+                        </svg>
+                    </div>
+                    <h3>Email</h3>
+                    <p>hello@rusticspoon.com</p>
+                    <p>reservations@rusticspoon.com</p>
+                    <a href="mailto:hello@rusticspoon.com" class="contact-link">Send Email →</a>
+                </div>
+                <div class="contact-card">
+                    <div class="contact-icon">
+                        <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <circle cx="12" cy="12" r="10"></circle>
+                            <polyline points="12 6 12 12 16 14"></polyline>
+                        </svg>
+                    </div>
+                    <h3>Hours</h3>
+                    <p>Mon-Thu: 11am - 10pm</p>
+                    <p>Fri-Sat: 11am - 11pm</p>
+                    <p>Sunday: 10am - 9pm</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Form -->
+    <section class="contact-form-section">
+        <div class="container">
+            <div class="contact-form-content">
+                <div class="contact-form-text">
+                    <h2>Send Us a Message</h2>
+                    <p>Have questions, feedback, or want to discuss a private event? Fill out the form below and we'll get back to you within 24 hours.</p>
+                </div>
+                <form class="general-contact-form" id="contactForm">
+                    <div class="form-group">
+                        <label for="contactName">Name *</label>
+                        <input type="text" id="contactName" name="contactName" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="contactEmail">Email *</label>
+                        <input type="email" id="contactEmail" name="contactEmail" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="subject">Subject *</label>
+                        <select id="subject" name="subject" required>
+                            <option value="">Select a subject</option>
+                            <option value="general">General Inquiry</option>
+                            <option value="feedback">Feedback</option>
+                            <option value="private-event">Private Event</option>
+                            <option value="catering">Catering</option>
+                            <option value="careers">Careers</option>
+                            <option value="other">Other</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="message">Message *</label>
+                        <textarea id="message" name="message" rows="5" required></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Send Message</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Map Section -->
+    <section class="map-section">
+        <div class="container">
+            <div class="map-container">
+                <h2>Find Us</h2>
+                <div class="map-placeholder">
+                    <iframe
+                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3305.7152203584424!2d-118.24268308478473!3d34.05223408060466!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMzTCsDAzJzA4LjAiTiAxMTjCsDE0JzMzLjYiVw!5e0!3m2!1sen!2sus!4v1620000000000!5m2!1sen!2sus"
+                        width="100%"
+                        height="400"
+                        style="border:0;"
+                        allowfullscreen=""
+                        loading="lazy">
+                    </iframe>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>The Rustic Spoon</h3>
+                    <p>Farm-to-table dining at its finest. Fresh ingredients, unforgettable experiences.</p>
+                    <div class="social-links">
+                        <a href="#" class="social-link">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M24 4.557c-.883.392-1.832.656-2.828.775 1.017-.609 1.798-1.574 2.165-2.724-.951.564-2.005.974-3.127 1.195-.897-.957-2.178-1.555-3.594-1.555-3.179 0-5.515 2.966-4.797 6.045-4.091-.205-7.719-2.165-10.148-5.144-1.29 2.213-.669 5.108 1.523 6.574-.806-.026-1.566-.247-2.229-.616-.054 2.281 1.581 4.415 3.949 4.89-.693.188-1.452.232-2.224.084.626 1.956 2.444 3.379 4.6 3.419-2.07 1.623-4.678 2.348-7.29 2.04 2.179 1.397 4.768 2.212 7.548 2.212 9.142 0 14.307-7.721 13.995-14.646.962-.695 1.797-1.562 2.457-2.549z"/>
+                            </svg>
+                        </a>
+                        <a href="#" class="social-link">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+                            </svg>
+                        </a>
+                        <a href="#" class="social-link">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M22.675 0h-21.35c-.732 0-1.325.593-1.325 1.325v21.351c0 .731.593 1.324 1.325 1.324h11.495v-9.294h-3.128v-3.622h3.128v-2.671c0-3.1 1.893-4.788 4.659-4.788 1.325 0 2.463.099 2.795.143v3.24l-1.918.001c-1.504 0-1.795.715-1.795 1.763v2.313h3.587l-.467 3.622h-3.12v9.293h6.116c.73 0 1.323-.593 1.323-1.325v-21.35c0-.732-.593-1.325-1.325-1.325z"/>
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+                <div class="footer-section">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="menu.html">Menu</a></li>
+                        <li><a href="about.html">About</a></li>
+                        <li><a href="contact.html">Reservations</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Information</h4>
+                    <ul>
+                        <li><a href="#">Private Events</a></li>
+                        <li><a href="#">Gift Cards</a></li>
+                        <li><a href="#">Careers</a></li>
+                        <li><a href="#">Privacy Policy</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Newsletter</h4>
+                    <p>Subscribe for special offers and updates</p>
+                    <form class="newsletter-form">
+                        <input type="email" placeholder="Your email" required>
+                        <button type="submit">Subscribe</button>
+                    </form>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 The Rustic Spoon. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Back to Top Button -->
+    <button class="back-to-top" id="backToTop" onclick="scrollToTop()">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <polyline points="18 15 12 9 6 15"></polyline>
+        </svg>
+    </button>
+
+    <!-- Cookie Consent Banner -->
+    <div class="cookie-consent" id="cookieConsent">
+        <div class="cookie-content">
+            <p>We use cookies to enhance your experience. By continuing to visit this site you agree to our use of cookies.</p>
+            <div class="cookie-buttons">
+                <button class="cookie-btn accept" onclick="acceptCookies()">Accept</button>
+                <button class="cookie-btn decline" onclick="declineCookies()">Decline</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Customer Account Modal -->
+    <div class="account-modal" id="accountModal" aria-hidden="true">
+        <div class="account-dialog" role="dialog" aria-modal="true" aria-label="Customer account">
+            <button class="account-close" type="button" onclick="closeAuthModal()" aria-label="Close">&times;</button>
+            <section class="auth-view" data-auth-view="login"><p class="account-eyebrow">The Rustic Spoon</p><h2>Welcome back</h2><form id="loginForm" class="account-form"><label>Email<input name="loginEmail" type="email" required autocomplete="email"></label><label>Password<input name="loginPassword" type="password" required autocomplete="current-password"></label><button class="account-primary" type="submit">Sign in</button></form><p class="auth-switch">New here? <button type="button" data-auth-switch="register">Create an account</button></p></section>
+            <section class="auth-view" data-auth-view="register" hidden><p class="account-eyebrow">Create your account</p><h2>Save your favourites</h2><form id="registerForm" class="account-form"><label>Name<input name="registerName" type="text" required maxlength="60" autocomplete="name"></label><label>Email<input name="registerEmail" type="email" required autocomplete="email"></label><label>Password<input name="registerPassword" type="password" required minlength="6" autocomplete="new-password"></label><label class="account-check"><input name="marketingOptIn" type="checkbox"> Send me offers and café updates</label><button class="account-primary" type="submit">Create account</button></form><p class="auth-switch">Already have an account? <button type="button" data-auth-switch="login">Sign in</button></p></section>
+            <section class="auth-view" data-auth-view="account" hidden><div id="accountPanel"></div></section>
+        </div>
+    </div>
+
+    <!-- Product Detail Modal -->
+    <div class="product-modal" id="productModal">
+        <div class="modal-overlay" onclick="closeProductModal()"></div>
+        <div class="modal-content">
+            <button class="modal-close" onclick="closeProductModal()">&times;</button>
+            <div class="modal-body">
+                <div class="modal-image-container">
+                    <img id="modalImage" src="" alt="" class="modal-image">
+                    <div class="modal-image-gallery">
+                        <div class="gallery-thumb active" onclick="changeModalImage(this)">
+                            <img src="" alt="Thumbnail 1">
+                        </div>
+                        <div class="gallery-thumb" onclick="changeModalImage(this)">
+                            <img src="" alt="Thumbnail 2">
+                        </div>
+                        <div class="gallery-thumb" onclick="changeModalImage(this)">
+                            <img src="" alt="Thumbnail 3">
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-details">
+                    <div class="modal-category" id="modalCategory"></div>
+                    <h2 class="modal-title" id="modalTitle"></h2>
+                    <div class="modal-rating" id="modalRating"></div>
+                    <div class="modal-price" id="modalPrice"></div>
+                    <div class="modal-description" id="modalDescription"></div>
+                    <div class="modal-dietary" id="modalDietary"></div>
+                    
+                    <div class="modal-features">
+                        <h3>Key Features</h3>
+                        <ul id="modalFeatures">
+                            <li>✓ Fresh ingredients sourced locally</li>
+                            <li>✓ Prepared by our expert chefs</li>
+                            <li>✓ Made to order for optimal freshness</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="modal-nutrition">
+                        <h3>Nutritional Information</h3>
+                        <div class="nutrition-grid">
+                            <div class="nutrition-item">
+                                <span class="nutrition-label">Calories</span>
+                                <span class="nutrition-value" id="modalCalories">450 kcal</span>
+                            </div>
+                            <div class="nutrition-item">
+                                <span class="nutrition-label">Protein</span>
+                                <span class="nutrition-value" id="modalProtein">25g</span>
+                            </div>
+                            <div class="nutrition-item">
+                                <span class="nutrition-label">Carbs</span>
+                                <span class="nutrition-value" id="modalCarbs">30g</span>
+                            </div>
+                            <div class="nutrition-item">
+                                <span class="nutrition-label">Fat</span>
+                                <span class="nutrition-value" id="modalFat">18g</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="modal-actions">
+                        <button class="modal-action-btn primary" onclick="orderNow()">
+                            <span>Order Now</span>
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M12 5v14M5 12h14"/>
+                            </svg>
+                        </button>
+                        <button class="modal-action-btn secondary" onclick="addToFavorites()">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
+                            </svg>
+                            <span>Add to Favorites</span>
+                        </button>
+                    </div>
+                    
+                    <div class="modal-reviews">
+                        <h3>Customer Reviews</h3>
+                        <div class="review-item">
+                            <div class="review-header">
+                                <strong>John D.</strong>
+                                <span class="review-stars">★★★★★</span>
+                            </div>
+                            <p class="review-text">Absolutely delicious! The flavors were perfectly balanced and the presentation was beautiful.</p>
+                        </div>
+                        <div class="review-item">
+                            <div class="review-header">
+                                <strong>Sarah M.</strong>
+                                <span class="review-stars">★★★★☆</span>
+                            </div>
+                            <p class="review-text">Great dish, fresh ingredients. Will definitely order again!</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="firebase-config.js"></script>
+    <script src="script.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-firestore-compat.js"></script>
+    <script src="auth.js"></script>
+</body>
+</html>
