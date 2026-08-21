@@ -1,0 +1,632 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Menu - The Rustic Spoon</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body class="menu-page">
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container">
+            <div class="nav-content">
+                <div class="logo">
+                    <h1>The Rustic Spoon</h1>
+                    <p>Farm to Table</p>
+                </div>
+                <ul class="nav-menu">
+                    <li><a href="index.html" class="nav-link">Home</a></li>
+                    <li><a href="menu.html" class="nav-link active">Menu</a></li>
+                    <li><a href="about.html" class="nav-link">About</a></li>
+                    <li><a href="contact.html" class="nav-link">Reservations</a></li>
+                </ul>
+                <button class="reserve-btn-nav" onclick="window.location.href='contact.html'">Book a Table</button>
+                <div class="header-actions">
+                    <div class="search-container">
+                        <input type="text" class="search-input" placeholder="Search menu..." id="searchInput">
+                        <button class="search-btn">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <circle cx="11" cy="11" r="8"></circle>
+                                <path d="m21 21-4.35-4.35"></path>
+                            </svg>
+                        </button>
+                    </div>
+                    <button class="theme-toggle" onclick="toggleTheme()" title="Toggle Dark Mode">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" id="themeIcon">
+                            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                        </svg>
+                    </button>
+                    <button class="auth-trigger" type="button" onclick="openAuthModal()">Sign in</button>
+                    <button class="auth-signout-trigger" type="button" onclick="signOutCustomer()" hidden>Log out</button>
+                    <button class="print-btn" onclick="printMenu()" title="Print Menu">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <polyline points="6 9 6 2 18 2 18 9"></polyline>
+                            <path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"></path>
+                            <rect x="6" y="14" width="12" height="8"></rect>
+                        </svg>
+                    </button>
+                </div>
+                <div class="hamburger" onclick="toggleMobileMenu()">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Mobile Menu -->
+    <div class="mobile-menu" id="mobileMenu">
+        <ul class="mobile-nav-menu">
+            <li><a href="index.html" class="mobile-nav-link">Home</a></li>
+            <li><a href="menu.html" class="mobile-nav-link">Menu</a></li>
+            <li><a href="about.html" class="mobile-nav-link">About</a></li>
+            <li><a href="contact.html" class="mobile-nav-link">Reservations</a></li>
+            <li><button class="auth-trigger mobile-auth-trigger" type="button" onclick="openAuthModal()">Sign in</button></li>
+            <li><button class="auth-signout-trigger mobile-auth-trigger" type="button" onclick="signOutCustomer()" hidden>Log out</button></li>
+        </ul>
+    </div>
+
+    <!-- Menu Header -->
+    <section class="menu-header">
+        <div class="container">
+            <h1>Our Menu</h1>
+            <p>Crafted with passion, served with love</p>
+        </div>
+    </section>
+
+    <!-- Menu Categories -->
+    <section class="menu-section">
+        <div class="container">
+            <div class="menu-categories">
+                <button class="category-btn active" data-category="starters">Starters</button>
+                <button class="category-btn" data-category="mains">Main Courses</button>
+                <button class="category-btn" data-category="desserts">Desserts</button>
+                <button class="category-btn" data-category="drinks">Drinks</button>
+            </div>
+
+            <!-- Starters -->
+            <div class="menu-category active" id="starters">
+                <div class="menu-grid">
+                    <div class="menu-item" onclick="openProductModal('Bruschetta Classica', '12', 'Starters', 'https://images.unsplash.com/photo-1541014741259-de529411b96a?w=800&h=600&fit=crop', 'Grilled bread topped with fresh tomatoes, basil, garlic, and extra virgin olive oil', 'Vegetarian', '5', '320', '8', '45', '12')">
+                        <div class="menu-item-image">
+                            <img src="https://images.unsplash.com/photo-1541014741259-de529411b96a?w=400&h=300&fit=crop" alt="Bruschetta">
+                        </div>
+                        <div class="menu-item-details">
+                            <div class="menu-item-header">
+                                <h3>Bruschetta Classica</h3>
+                                <span class="menu-price">$12</span>
+                            </div>
+                            <p>Grilled bread topped with fresh tomatoes, basil, garlic, and extra virgin olive oil</p>
+                            <span class="dietary">Vegetarian</span>
+                        </div>
+                    </div>
+                    <div class="menu-item" onclick="openProductModal('Butternut Squash Soup', '14', 'Starters', 'https://images.unsplash.com/photo-1608897013039-887f21d8c804?w=800&h=600&fit=crop', 'Creamy roasted butternut squash soup with sage croutons and a drizzle of maple syrup', 'Gluten-Free', '4', '280', '6', '38', '16')">
+                        <div class="menu-item-image">
+                            <img src="https://images.unsplash.com/photo-1608897013039-887f21d8c804?w=400&h=300&fit=crop" alt="Soup">
+                        </div>
+                        <div class="menu-item-details">
+                            <div class="menu-item-header">
+                                <h3>Butternut Squash Soup</h3>
+                                <span class="menu-price">$14</span>
+                            </div>
+                            <p>Creamy roasted butternut squash soup with sage croutons and a drizzle of maple syrup</p>
+                            <span class="dietary">Gluten-Free</span>
+                        </div>
+                    </div>
+                    <div class="menu-item" onclick="openProductModal('Crispy Calamari', '16', 'Starters', 'https://images.unsplash.com/photo-1626200419199-391ae4be7a41?w=800&h=600&fit=crop', 'Lightly fried calamari served with marinara sauce and lemon aioli', 'Seafood', '4', '380', '22', '28', '20')">
+                        <div class="menu-item-image">
+                            <img src="https://images.unsplash.com/photo-1626200419199-391ae4be7a41?w=400&h=300&fit=crop" alt="Calamari">
+                        </div>
+                        <div class="menu-item-details">
+                            <div class="menu-item-header">
+                                <h3>Crispy Calamari</h3>
+                                <span class="menu-price">$16</span>
+                            </div>
+                            <p>Lightly fried calamari served with marinara sauce and lemon aioli</p>
+                            <span class="dietary">Seafood</span>
+                        </div>
+                    </div>
+                    <div class="menu-item" onclick="openProductModal('Caprese Salad', '15', 'Starters', 'https://images.unsplash.com/photo-1505253758473-96b7015fcd40?w=800&h=600&fit=crop', 'Fresh mozzarella, heirloom tomatoes, basil, aged balsamic reduction', 'Vegetarian', '5', '280', '12', '18', '18')">
+                        <div class="menu-item-image">
+                            <img src="https://images.unsplash.com/photo-1505253758473-96b7015fcd40?w=400&h=300&fit=crop" alt="Caprese">
+                        </div>
+                        <div class="menu-item-details">
+                            <div class="menu-item-header">
+                                <h3>Caprese Salad</h3>
+                                <span class="menu-price">$15</span>
+                            </div>
+                            <p>Fresh mozzarella, heirloom tomatoes, basil, aged balsamic reduction</p>
+                            <span class="dietary">Vegetarian</span>
+                        </div>
+                    </div>
+                    <div class="menu-item" onclick="openProductModal('Stuffed Mushrooms', '13', 'Starters', 'https://images.unsplash.com/photo-1541529086526-db283c563270?w=800&h=600&fit=crop', 'Button mushrooms filled with herb cream cheese and garlic breadcrumbs', 'Vegetarian', '4', '220', '8', '16', '14')">
+                        <div class="menu-item-image">
+                            <img src="https://images.unsplash.com/photo-1541529086526-db283c563270?w=400&h=300&fit=crop" alt="Stuffed Mushrooms">
+                        </div>
+                        <div class="menu-item-details">
+                            <div class="menu-item-header">
+                                <h3>Stuffed Mushrooms</h3>
+                                <span class="menu-price">$13</span>
+                            </div>
+                            <p>Button mushrooms filled with herb cream cheese and garlic breadcrumbs</p>
+                            <span class="dietary">Vegetarian</span>
+                        </div>
+                    </div>
+                    <div class="menu-item" onclick="openProductModal('Shrimp Cocktail', '18', 'Starters', 'https://images.unsplash.com/photo-1608039829572-9b5e6b0d1c5e?w=800&h=600&fit=crop', 'Jumbo shrimp with zesty cocktail sauce and lemon wedges', 'Seafood', '5', '180', '20', '4', '8')">
+                        <div class="menu-item-image">
+                            <img src="https://images.unsplash.com/photo-1608039829572-9b5e6b0d1c5e?w=400&h=300&fit=crop" alt="Shrimp Cocktail">
+                        </div>
+                        <div class="menu-item-details">
+                            <div class="menu-item-header">
+                                <h3>Shrimp Cocktail</h3>
+                                <span class="menu-price">$18</span>
+                            </div>
+                            <p>Jumbo shrimp with zesty cocktail sauce and lemon wedges</p>
+                            <span class="dietary">Seafood</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Main Courses -->
+            <div class="menu-category" id="mains">
+                <div class="menu-grid">
+                    <div class="menu-item" onclick="openProductModal('Pan-Seared Salmon', '32', 'Main Courses', 'https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=800&h=600&fit=crop', 'Atlantic salmon with lemon butter sauce, asparagus, and wild rice pilaf', 'Seafood', '5', '520', '38', '32', '28')">
+                        <div class="menu-item-image">
+                            <img src="https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=400&h=300&fit=crop" alt="Salmon">
+                        </div>
+                        <div class="menu-item-details">
+                            <div class="menu-item-header">
+                                <h3>Pan-Seared Salmon</h3>
+                                <span class="menu-price">$32</span>
+                            </div>
+                            <p>Atlantic salmon with lemon butter sauce, asparagus, and wild rice pilaf</p>
+                            <span class="dietary">Seafood</span>
+                        </div>
+                    </div>
+                    <div class="menu-item" onclick="openProductModal('Grilled Ribeye Steak', '45', 'Main Courses', 'https://images.unsplash.com/photo-1600891964092-4316c288032e?w=800&h=600&fit=crop', '12oz prime ribeye with garlic herb butter, roasted potatoes, and seasonal vegetables', 'Gluten-Free', '5', '680', '52', '48', '42')">
+                        <div class="menu-item-image">
+                            <img src="https://images.unsplash.com/photo-1600891964092-4316c288032e?w=400&h=300&fit=crop" alt="Steak">
+                        </div>
+                        <div class="menu-item-details">
+                            <div class="menu-item-header">
+                                <h3>Grilled Ribeye Steak</h3>
+                                <span class="menu-price">$45</span>
+                            </div>
+                            <p>12oz prime ribeye with garlic herb butter, roasted potatoes, and seasonal vegetables</p>
+                            <span class="dietary">Gluten-Free</span>
+                        </div>
+                    </div>
+                    <div class="menu-item" onclick="openProductModal('Truffle Mushroom Pizza', '24', 'Main Courses', 'https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?w=800&h=600&fit=crop', 'Wood-fired pizza with wild mushrooms, truffle oil, fresh mozzarella, and thyme', 'Vegetarian', '4', '480', '18', '52', '22')">
+                        <div class="menu-item-image">
+                            <img src="https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?w=400&h=300&fit=crop" alt="Pizza">
+                        </div>
+                        <div class="menu-item-details">
+                            <div class="menu-item-header">
+                                <h3>Truffle Mushroom Pizza</h3>
+                                <span class="menu-price">$24</span>
+                            </div>
+                            <p>Wood-fired pizza with wild mushrooms, truffle oil, fresh mozzarella, and thyme</p>
+                            <span class="dietary">Vegetarian</span>
+                        </div>
+                    </div>
+                    <div class="menu-item" onclick="openProductModal('Homemade Pappardelle', '28', 'Main Courses', 'https://images.unsplash.com/photo-1467003909585-2f8a72700288?w=800&h=600&fit=crop', 'Fresh pasta with slow-braised beef ragù, parmesan, and fresh herbs', 'Chef Special', '5', '550', '32', '65', '24')">
+                        <div class="menu-item-image">
+                            <img src="https://images.unsplash.com/photo-1467003909585-2f8a72700288?w=400&h=300&fit=crop" alt="Pasta">
+                        </div>
+                        <div class="menu-item-details">
+                            <div class="menu-item-header">
+                                <h3>Homemade Pappardelle</h3>
+                                <span class="menu-price">$28</span>
+                            </div>
+                            <p>Fresh pasta with slow-braised beef ragù, parmesan, and fresh herbs</p>
+                            <span class="dietary">Chef's Special</span>
+                        </div>
+                    </div>
+                    <div class="menu-item" onclick="openProductModal('Grilled Lamb Chops', '38', 'Main Courses', 'https://images.unsplash.com/photo-1432139555190-58524dae6a55?w=800&h=600&fit=crop', 'Rack of lamb with rosemary crust, mint pesto, and roasted vegetables', 'Gluten-Free', '5', '580', '42', '38', '32')">
+                        <div class="menu-item-image">
+                            <img src="https://images.unsplash.com/photo-1432139555190-58524dae6a55?w=400&h=300&fit=crop" alt="Lamb Chops">
+                        </div>
+                        <div class="menu-item-details">
+                            <div class="menu-item-header">
+                                <h3>Grilled Lamb Chops</h3>
+                                <span class="menu-price">$38</span>
+                            </div>
+                            <p>Rack of lamb with rosemary crust, mint pesto, and roasted vegetables</p>
+                            <span class="dietary">Gluten-Free</span>
+                        </div>
+                    </div>
+                    <div class="menu-item" onclick="openProductModal('Seasonal Vegetable Risotto', '26', 'Main Courses', 'https://images.unsplash.com/photo-1512621776951-a57141f2eefd?w=800&h=600&fit=crop', 'Creamy arborio rice with farm-fresh vegetables and parmesan cheese', 'Vegetarian', '4', '420', '14', '62', '18')">
+                        <div class="menu-item-image">
+                            <img src="https://images.unsplash.com/photo-1512621776951-a57141f2eefd?w=400&h=300&fit=crop" alt="Vegetable Risotto">
+                        </div>
+                        <div class="menu-item-details">
+                            <div class="menu-item-header">
+                                <h3>Seasonal Vegetable Risotto</h3>
+                                <span class="menu-price">$26</span>
+                            </div>
+                            <p>Creamy arborio rice with farm-fresh vegetables and parmesan cheese</p>
+                            <span class="dietary">Vegetarian</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Desserts -->
+            <div class="menu-category" id="desserts">
+                <div class="menu-grid">
+                    <div class="menu-item" onclick="openProductModal('Classic Tiramisu', '12', 'Desserts', 'https://images.unsplash.com/photo-1551024601-bec78aea704b?w=800&h=600&fit=crop', 'Traditional Italian dessert with espresso-soaked ladyfingers and mascarpone cream', 'Vegetarian', '5', '380', '8', '42', '22')">
+                        <div class="menu-item-image">
+                            <img src="https://images.unsplash.com/photo-1551024601-bec78aea704b?w=400&h=300&fit=crop" alt="Tiramisu">
+                        </div>
+                        <div class="menu-item-details">
+                            <div class="menu-item-header">
+                                <h3>Classic Tiramisu</h3>
+                                <span class="menu-price">$12</span>
+                            </div>
+                            <p>Traditional Italian dessert with espresso-soaked ladyfingers and mascarpone cream</p>
+                            <span class="dietary">Vegetarian</span>
+                        </div>
+                    </div>
+                    <div class="menu-item" onclick="openProductModal('New York Cheesecake', '11', 'Desserts', 'https://images.unsplash.com/photo-1571877227200-a0d98ea607e9?w=800&h=600&fit=crop', 'Creamy vanilla cheesecake with graham cracker crust and berry compote', 'Vegetarian', '4', '420', '10', '38', '24')">
+                        <div class="menu-item-image">
+                            <img src="https://images.unsplash.com/photo-1571877227200-a0d98ea607e9?w=400&h=300&fit=crop" alt="Cheesecake">
+                        </div>
+                        <div class="menu-item-details">
+                            <div class="menu-item-header">
+                                <h3>New York Cheesecake</h3>
+                                <span class="menu-price">$11</span>
+                            </div>
+                            <p>Creamy vanilla cheesecake with graham cracker crust and berry compote</p>
+                            <span class="dietary">Vegetarian</span>
+                        </div>
+                    </div>
+                    <div class="menu-item" onclick="openProductModal('Crème Brûlée', '13', 'Desserts', 'https://images.unsplash.com/photo-1488477181946-6428a0291777?w=800&h=600&fit=crop', 'Classic French custard with caramelized sugar crust and fresh berries', 'Gluten-Free', '5', '320', '6', '28', '18')">
+                        <div class="menu-item-image">
+                            <img src="https://images.unsplash.com/photo-1488477181946-6428a0291777?w=400&h=300&fit=crop" alt="Creme Brulee">
+                        </div>
+                        <div class="menu-item-details">
+                            <div class="menu-item-header">
+                                <h3>Crème Brûlée</h3>
+                                <span class="menu-price">$13</span>
+                            </div>
+                            <p>Classic French custard with caramelized sugar crust and fresh berries</p>
+                            <span class="dietary">Gluten-Free</span>
+                        </div>
+                    </div>
+                    <div class="menu-item" onclick="openProductModal('Artisan Ice Cream', '9', 'Desserts', 'https://images.unsplash.com/photo-1563805042-7684c019e1cb?w=800&h=600&fit=crop', 'Three scoops of house-made ice cream (flavors vary seasonally)', 'Vegetarian', '4', '280', '6', '35', '16')">
+                        <div class="menu-item-image">
+                            <img src="https://images.unsplash.com/photo-1563805042-7684c019e1cb?w=400&h=300&fit=crop" alt="Ice Cream">
+                        </div>
+                        <div class="menu-item-details">
+                            <div class="menu-item-header">
+                                <h3>Artisan Ice Cream</h3>
+                                <span class="menu-price">$9</span>
+                            </div>
+                            <p>Three scoops of house-made ice cream (flavors vary seasonally)</p>
+                            <span class="dietary">Vegetarian</span>
+                        </div>
+                    </div>
+                    <div class="menu-item" onclick="openProductModal('Chocolate Lava Cake', '14', 'Desserts', 'https://images.unsplash.com/photo-1551024506-0bccd828d307?w=800&h=600&fit=crop', 'Warm chocolate cake with molten center, vanilla ice cream, and berry sauce', 'Vegetarian', '5', '480', '12', '52', '26')">
+                        <div class="menu-item-image">
+                            <img src="https://images.unsplash.com/photo-1551024506-0bccd828d307?w=400&h=300&fit=crop" alt="Chocolate Lava Cake">
+                        </div>
+                        <div class="menu-item-details">
+                            <div class="menu-item-header">
+                                <h3>Chocolate Lava Cake</h3>
+                                <span class="menu-price">$14</span>
+                            </div>
+                            <p>Warm chocolate cake with molten center, vanilla ice cream, and berry sauce</p>
+                            <span class="dietary">Vegetarian</span>
+                        </div>
+                    </div>
+                    <div class="menu-item" onclick="openProductModal('Seasonal Fruit Tart', '12', 'Desserts', 'https://images.unsplash.com/photo-1488477181946-6428a0291777?w=800&h=600&fit=crop', 'Butter pastry crust with vanilla custard and fresh seasonal fruits', 'Vegetarian', '4', '350', '8', '42', '18')">
+                        <div class="menu-item-image">
+                            <img src="https://images.unsplash.com/photo-1488477181946-6428a0291777?w=400&h=300&fit=crop" alt="Fruit Tart">
+                        </div>
+                        <div class="menu-item-details">
+                            <div class="menu-item-header">
+                                <h3>Seasonal Fruit Tart</h3>
+                                <span class="menu-price">$12</span>
+                            </div>
+                            <p>Butter pastry crust with vanilla custard and fresh seasonal fruits</p>
+                            <span class="dietary">Vegetarian</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Drinks -->
+            <div class="menu-category" id="drinks">
+                <div class="menu-grid">
+                    <div class="menu-item" onclick="checkAgeAndOpenModal('House Red Wine', '12', 'Drinks', 'https://images.unsplash.com/photo-1544145945-f90425340c7e?w=800&h=600&fit=crop', 'Selection of premium red wines from local vineyards (glass)', 'Alcoholic', '4', '125', '0', '4', '0')">
+                        <div class="menu-item-image">
+                            <img src="https://images.unsplash.com/photo-1544145945-f90425340c7e?w=400&h=300&fit=crop" alt="Wine">
+                        </div>
+                        <div class="menu-item-details">
+                            <div class="menu-item-header">
+                                <h3>House Red Wine</h3>
+                                <span class="menu-price">$12</span>
+                            </div>
+                            <p>Selection of premium red wines from local vineyards (glass)</p>
+                            <span class="dietary">Alcoholic</span>
+                        </div>
+                    </div>
+                    <div class="menu-item" onclick="checkAgeAndOpenModal('Signature Cocktails', '14', 'Drinks', 'https://images.unsplash.com/photo-1536935338788-843bb54f2f98?w=800&h=600&fit=crop', 'House specialties including Rustic Mule and Garden Fresh Margarita', 'Alcoholic', '5', '180', '2', '18', '0')">
+                        <div class="menu-item-image">
+                            <img src="https://images.unsplash.com/photo-1536935338788-843bb54f2f98?w=400&h=300&fit=crop" alt="Cocktail">
+                        </div>
+                        <div class="menu-item-details">
+                            <div class="menu-item-header">
+                                <h3>Signature Cocktails</h3>
+                                <span class="menu-price">$14</span>
+                            </div>
+                            <p>House specialties including Rustic Mule and Garden Fresh Margarita</p>
+                            <span class="dietary">Alcoholic</span>
+                        </div>
+                    </div>
+                    <div class="menu-item" onclick="openProductModal('Artisan Coffee', '5', 'Drinks', 'https://images.unsplash.com/photo-1509042239860-f550ce710b93?w=800&h=600&fit=crop', 'Premium espresso drinks, pour-over, and cold brew options', 'Non-Alcoholic', '4', '15', '1', '2', '0')">
+                        <div class="menu-item-image">
+                            <img src="https://images.unsplash.com/photo-1509042239860-f550ce710b93?w=400&h=300&fit=crop" alt="Coffee">
+                        </div>
+                        <div class="menu-item-details">
+                            <div class="menu-item-header">
+                                <h3>Artisan Coffee</h3>
+                                <span class="menu-price">$5</span>
+                            </div>
+                            <p>Premium espresso drinks, pour-over, and cold brew options</p>
+                            <span class="dietary">Non-Alcoholic</span>
+                        </div>
+                    </div>
+                    <div class="menu-item" onclick="openProductModal('Fresh Pressed Juices', '8', 'Drinks', 'https://images.unsplash.com/photo-1544145945-f90425340c7e?w=800&h=600&fit=crop', 'Daily selection of fresh fruit and vegetable juices', 'Vegan', '4', '120', '2', '28', '0')">
+                        <div class="menu-item-image">
+                            <img src="https://images.unsplash.com/photo-1544145945-f90425340c7e?w=400&h=300&fit=crop" alt="Fresh Juice">
+                        </div>
+                        <div class="menu-item-details">
+                            <div class="menu-item-header">
+                                <h3>Fresh Pressed Juices</h3>
+                                <span class="menu-price">$8</span>
+                            </div>
+                            <p>Daily selection of fresh fruit and vegetable juices</p>
+                            <span class="dietary">Vegan</span>
+                        </div>
+                    </div>
+                    <div class="menu-item" onclick="openProductModal('Local Craft Beer', '9', 'Drinks', 'https://images.unsplash.com/photo-1566633806327-68e152aaf26d?w=800&h=600&fit=crop', 'Rotating selection of craft beers from local breweries (bottle)', 'Alcoholic', '4', '150', '2', '12', '0')">
+                        <div class="menu-item-image">
+                            <img src="https://images.unsplash.com/photo-1566633806327-68e152aaf26d?w=400&h=300&fit=crop" alt="Craft Beer">
+                        </div>
+                        <div class="menu-item-details">
+                            <div class="menu-item-header">
+                                <h3>Local Craft Beer</h3>
+                                <span class="menu-price">$9</span>
+                            </div>
+                            <p>Rotating selection of craft beers from local breweries (bottle)</p>
+                            <span class="dietary">Alcoholic</span>
+                        </div>
+                    </div>
+                    <div class="menu-item" onclick="openProductModal('Artisan Sparkling Water', '6', 'Drinks', 'https://images.unsplash.com/photo-1523362628745-0c100150b504?w=800&h=600&fit=crop', 'Premium sparkling water with natural fruit infusions', 'Non-Alcoholic', '4', '0', '0', '0', '0')">
+                        <div class="menu-item-image">
+                            <img src="https://images.unsplash.com/photo-1523362628745-0c100150b504?w=400&h=300&fit=crop" alt="Sparkling Water">
+                        </div>
+                        <div class="menu-item-details">
+                            <div class="menu-item-header">
+                                <h3>Artisan Sparkling Water</h3>
+                                <span class="menu-price">$6</span>
+                            </div>
+                            <p>Premium sparkling water with natural fruit infusions</p>
+                            <span class="dietary">Non-Alcoholic</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Menu Note -->
+    <section class="menu-note">
+        <div class="container">
+            <div class="note-content">
+                <h3>Dietary Requirements</h3>
+                <p>Please inform your server of any allergies or dietary restrictions. We can accommodate most dietary needs with advance notice.</p>
+                <div class="dietary-legend">
+                    <span class="legend-item"><span class="dot vegetarian"></span> Vegetarian</span>
+                    <span class="legend-item"><span class="dot vegan"></span> Vegan</span>
+                    <span class="legend-item"><span class="dot gluten-free"></span> Gluten-Free</span>
+                    <span class="legend-item"><span class="dot seafood"></span> Seafood</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>The Rustic Spoon</h3>
+                    <p>Farm-to-table dining at its finest. Fresh ingredients, unforgettable experiences.</p>
+                    <div class="social-links">
+                        <a href="#" class="social-link">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M24 4.557c-.883.392-1.832.656-2.828.775 1.017-.609 1.798-1.574 2.165-2.724-.951.564-2.005.974-3.127 1.195-.897-.957-2.178-1.555-3.594-1.555-3.179 0-5.515 2.966-4.797 6.045-4.091-.205-7.719-2.165-10.148-5.144-1.29 2.213-.669 5.108 1.523 6.574-.806-.026-1.566-.247-2.229-.616-.054 2.281 1.581 4.415 3.949 4.89-.693.188-1.452.232-2.224.084.626 1.956 2.444 3.379 4.6 3.419-2.07 1.623-4.678 2.348-7.29 2.04 2.179 1.397 4.768 2.212 7.548 2.212 9.142 0 14.307-7.721 13.995-14.646.962-.695 1.797-1.562 2.457-2.549z"/>
+                            </svg>
+                        </a>
+                        <a href="#" class="social-link">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+                            </svg>
+                        </a>
+                        <a href="#" class="social-link">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M22.675 0h-21.35c-.732 0-1.325.593-1.325 1.325v21.351c0 .731.593 1.324 1.325 1.324h11.495v-9.294h-3.128v-3.622h3.128v-2.671c0-3.1 1.893-4.788 4.659-4.788 1.325 0 2.463.099 2.795.143v3.24l-1.918.001c-1.504 0-1.795.715-1.795 1.763v2.313h3.587l-.467 3.622h-3.12v9.293h6.116c.73 0 1.323-.593 1.323-1.325v-21.35c0-.732-.593-1.325-1.325-1.325z"/>
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+                <div class="footer-section">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="menu.html">Menu</a></li>
+                        <li><a href="about.html">About</a></li>
+                        <li><a href="contact.html">Reservations</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Information</h4>
+                    <ul>
+                        <li><a href="#">Private Events</a></li>
+                        <li><a href="#">Gift Cards</a></li>
+                        <li><a href="#">Careers</a></li>
+                        <li><a href="#">Privacy Policy</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Newsletter</h4>
+                    <p>Subscribe for special offers and updates</p>
+                    <form class="newsletter-form">
+                        <input type="email" placeholder="Your email" required>
+                        <button type="submit">Subscribe</button>
+                    </form>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 The Rustic Spoon. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Back to Top Button -->
+    <button class="back-to-top" id="backToTop" onclick="scrollToTop()">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <polyline points="18 15 12 9 6 15"></polyline>
+        </svg>
+    </button>
+
+    <!-- Cookie Consent Banner -->
+    <div class="cookie-consent" id="cookieConsent">
+        <div class="cookie-content">
+            <p>We use cookies to enhance your experience. By continuing to visit this site you agree to our use of cookies.</p>
+            <div class="cookie-buttons">
+                <button class="cookie-btn accept" onclick="acceptCookies()">Accept</button>
+                <button class="cookie-btn decline" onclick="declineCookies()">Decline</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Customer Account Modal -->
+    <div class="account-modal" id="accountModal" aria-hidden="true">
+        <div class="account-dialog" role="dialog" aria-modal="true" aria-label="Customer account">
+            <button class="account-close" type="button" onclick="closeAuthModal()" aria-label="Close">&times;</button>
+            <section class="auth-view" data-auth-view="login"><p class="account-eyebrow">The Rustic Spoon</p><h2>Welcome back</h2><form id="loginForm" class="account-form"><label>Email<input name="loginEmail" type="email" required autocomplete="email"></label><label>Password<input name="loginPassword" type="password" required autocomplete="current-password"></label><button class="account-primary" type="submit">Sign in</button></form><p class="auth-switch">New here? <button type="button" data-auth-switch="register">Create an account</button></p></section>
+            <section class="auth-view" data-auth-view="register" hidden><p class="account-eyebrow">Create your account</p><h2>Save your favourites</h2><form id="registerForm" class="account-form"><label>Name<input name="registerName" type="text" required maxlength="60" autocomplete="name"></label><label>Email<input name="registerEmail" type="email" required autocomplete="email"></label><label>Password<input name="registerPassword" type="password" required minlength="6" autocomplete="new-password"></label><label class="account-check"><input name="marketingOptIn" type="checkbox"> Send me offers and café updates</label><button class="account-primary" type="submit">Create account</button></form><p class="auth-switch">Already have an account? <button type="button" data-auth-switch="login">Sign in</button></p></section>
+            <section class="auth-view" data-auth-view="account" hidden><div id="accountPanel"></div></section>
+        </div>
+    </div>
+
+    <!-- Product Detail Modal -->
+    <div class="product-modal" id="productModal">
+        <div class="modal-overlay" onclick="closeProductModal()"></div>
+        <div class="modal-content">
+            <button class="modal-close" onclick="closeProductModal()">&times;</button>
+            <div class="modal-body">
+                <div class="modal-image-container">
+                    <img id="modalImage" src="" alt="" class="modal-image">
+                    <div class="modal-image-gallery">
+                        <div class="gallery-thumb active" onclick="changeModalImage(this)">
+                            <img src="" alt="Thumbnail 1">
+                        </div>
+                        <div class="gallery-thumb" onclick="changeModalImage(this)">
+                            <img src="" alt="Thumbnail 2">
+                        </div>
+                        <div class="gallery-thumb" onclick="changeModalImage(this)">
+                            <img src="" alt="Thumbnail 3">
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-details">
+                    <div class="modal-category" id="modalCategory"></div>
+                    <h2 class="modal-title" id="modalTitle"></h2>
+                    <div class="modal-rating" id="modalRating"></div>
+                    <div class="modal-price" id="modalPrice"></div>
+                    <div class="modal-description" id="modalDescription"></div>
+                    <div class="modal-dietary" id="modalDietary"></div>
+                    
+                    <div class="modal-features">
+                        <h3>Key Features</h3>
+                        <ul id="modalFeatures">
+                            <li>✓ Fresh ingredients sourced locally</li>
+                            <li>✓ Prepared by our expert chefs</li>
+                            <li>✓ Made to order for optimal freshness</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="modal-nutrition">
+                        <h3>Nutritional Information</h3>
+                        <div class="nutrition-grid">
+                            <div class="nutrition-item">
+                                <span class="nutrition-label">Calories</span>
+                                <span class="nutrition-value" id="modalCalories">450 kcal</span>
+                            </div>
+                            <div class="nutrition-item">
+                                <span class="nutrition-label">Protein</span>
+                                <span class="nutrition-value" id="modalProtein">25g</span>
+                            </div>
+                            <div class="nutrition-item">
+                                <span class="nutrition-label">Carbs</span>
+                                <span class="nutrition-value" id="modalCarbs">30g</span>
+                            </div>
+                            <div class="nutrition-item">
+                                <span class="nutrition-label">Fat</span>
+                                <span class="nutrition-value" id="modalFat">18g</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="modal-actions">
+                        <button class="modal-action-btn primary" onclick="orderNow()">
+                            <span>Order Now</span>
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M12 5v14M5 12h14"/>
+                            </svg>
+                        </button>
+                        <button class="modal-action-btn secondary" onclick="addToFavorites()">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
+                            </svg>
+                            <span>Add to Favorites</span>
+                        </button>
+                    </div>
+                    
+                    <div class="modal-reviews">
+                        <h3>Customer Reviews</h3>
+                        <div class="review-item">
+                            <div class="review-header">
+                                <strong>John D.</strong>
+                                <span class="review-stars">★★★★★</span>
+                            </div>
+                            <p class="review-text">Absolutely delicious! The flavors were perfectly balanced and the presentation was beautiful.</p>
+                        </div>
+                        <div class="review-item">
+                            <div class="review-header">
+                                <strong>Sarah M.</strong>
+                                <span class="review-stars">★★★★☆</span>
+                            </div>
+                            <p class="review-text">Great dish, fresh ingredients. Will definitely order again!</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="firebase-config.js"></script>
+    <script src="script.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-firestore-compat.js"></script>
+    <script src="auth.js"></script>
+</body>
+</html>
