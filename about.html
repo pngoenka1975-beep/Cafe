@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us - The Rustic Spoon</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container">
+            <div class="nav-content">
+                <div class="logo">
+                    <h1>The Rustic Spoon</h1>
+                    <p>Farm to Table</p>
+                </div>
+                <ul class="nav-menu">
+                    <li><a href="index.html" class="nav-link">Home</a></li>
+                    <li><a href="menu.html" class="nav-link">Menu</a></li>
+                    <li><a href="about.html" class="nav-link active">About</a></li>
+                    <li><a href="contact.html" class="nav-link">Reservations</a></li>
+                </ul>
+                <button class="reserve-btn-nav" onclick="window.location.href='contact.html'">Book a Table</button>
+                <div class="header-actions">
+                    <div class="search-container">
+                        <input type="text" class="search-input" placeholder="Search menu..." id="searchInput">
+                        <button class="search-btn">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <circle cx="11" cy="11" r="8"></circle>
+                                <path d="m21 21-4.35-4.35"></path>
+                            </svg>
+                        </button>
+                    </div>
+                    <button class="theme-toggle" onclick="toggleTheme()" title="Toggle Dark Mode">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" id="themeIcon">
+                            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                        </svg>
+                    </button>
+                    <button class="auth-trigger" type="button" onclick="openAuthModal()">Sign in</button>
+                    <button class="auth-signout-trigger" type="button" onclick="signOutCustomer()" hidden>Log out</button>
+                </div>
+                <div class="hamburger" onclick="toggleMobileMenu()">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Mobile Menu -->
+    <div class="mobile-menu" id="mobileMenu">
+        <ul class="mobile-nav-menu">
+            <li><a href="index.html" class="mobile-nav-link">Home</a></li>
+            <li><a href="menu.html" class="mobile-nav-link">Menu</a></li>
+            <li><a href="about.html" class="mobile-nav-link">About</a></li>
+            <li><a href="contact.html" class="mobile-nav-link">Reservations</a></li>
+            <li><button class="auth-trigger mobile-auth-trigger" type="button" onclick="openAuthModal()">Sign in</button></li>
+            <li><button class="auth-signout-trigger mobile-auth-trigger" type="button" onclick="signOutCustomer()" hidden>Log out</button></li>
+        </ul>
+    </div>
+
+    <!-- About Header -->
+    <section class="about-header">
+        <div class="container">
+            <h1>Our Story</h1>
+            <p>From farm to table, a journey of passion and flavor</p>
+        </div>
+    </section>
+
+    <!-- Story Section -->
+    <section class="story-section">
+        <div class="container">
+            <div class="story-content">
+                <div class="story-image">
+                    <img src="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=600&h=400&fit=crop" alt="Restaurant Interior">
+                </div>
+                <div class="story-text">
+                    <h2>Where It All Began</h2>
+                    <p>The Rustic Spoon was born in 2015 from a simple dream: to create a dining experience that celebrates the connection between the land and the table. Our founder, Chef Marcus Thompson, grew up on a family farm where he learned that the best meals start with the freshest ingredients.</p>
+                    <p>After training in some of the world's finest kitchens, Marcus returned home with a vision to bring that farm-to-table philosophy to our community. He partnered with local farmers, artisans, and producers who share his commitment to quality and sustainability.</p>
+                    <p>Today, we continue that tradition by sourcing 80% of our ingredients from within 50 miles of our kitchen. Every dish tells a story of the seasons, the soil, and the dedicated hands that nurture our food from seed to plate.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Values Section -->
+    <section class="values-section">
+        <div class="container">
+            <div class="section-header">
+                <h2>Our Values</h2>
+                <p>The principles that guide everything we do</p>
+            </div>
+            <div class="values-grid">
+                <div class="value-card">
+                    <div class="value-icon">
+                        <svg width="50" height="50" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M12 2.69l5.66 5.66a8 8 0 1 1-11.31 0z"></path>
+                        </svg>
+                    </div>
+                    <h3>Sustainability</h3>
+                    <p>We're committed to sustainable practices that protect our environment and support local ecosystems.</p>
+                </div>
+                <div class="value-card">
+                    <div class="value-icon">
+                        <svg width="50" height="50" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+                            <circle cx="9" cy="7" r="4"></circle>
+                            <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
+                            <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+                        </svg>
+                    </div>
+                    <h3>Community</h3>
+                    <p>We believe in strengthening our community through partnerships, education, and shared experiences.</p>
+                </div>
+                <div class="value-card">
+                    <div class="value-icon">
+                        <svg width="50" height="50" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"></path>
+                        </svg>
+                    </div>
+                    <h3>Excellence</h3>
+                    <p>We pursue excellence in every dish, every service interaction, and every detail of your experience.</p>
+                </div>
+                <div class="value-card">
+                    <div class="value-icon">
+                        <svg width="50" height="50" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
+                        </svg>
+                    </div>
+                    <h3>Passion</h3>
+                    <p>Our love for food and hospitality drives us to create memorable moments for every guest.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Team Section -->
+    <section class="team-section">
+        <div class="container">
+            <div class="section-header">
+                <h2>Meet Our Team</h2>
+                <p>The talented people behind your dining experience</p>
+            </div>
+            <div class="team-grid">
+                <div class="team-card">
+                    <div class="team-image">
+                        <img src="https://images.unsplash.com/photo-1577219491135-ce391730fb2c?w=400&h=400&fit=crop" alt="Chef Marcus">
+                    </div>
+                    <div class="team-info">
+                        <h3>Marcus Thompson</h3>
+                        <p class="team-role">Executive Chef & Founder</p>
+                        <p class="team-bio">20+ years of culinary experience, trained in France and Italy</p>
+                    </div>
+                </div>
+                <div class="team-card">
+                    <div class="team-image">
+                        <img src="https://images.unsplash.com/photo-1583394293214-28ez8d8e95c2?w=400&h=400&fit=crop" alt="Sofia Martinez">
+                    </div>
+                    <div class="team-info">
+                        <h3>Sofia Martinez</h3>
+                        <p class="team-role">Sous Chef</p>
+                        <p class="team-bio">Specialist in Mediterranean cuisine and pastry arts</p>
+                    </div>
+                </div>
+                <div class="team-card">
+                    <div class="team-image">
+                        <img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?w=400&h=400&fit=crop" alt="James Wilson">
+                    </div>
+                    <div class="team-info">
+                        <h3>James Wilson</h3>
+                        <p class="team-role">General Manager</p>
+                        <p class="team-bio">15 years in hospitality management and guest relations</p>
+                    </div>
+                </div>
+                <div class="team-card">
+                    <div class="team-image">
+                        <img src="https://images.unsplash.com/photo-1594744803329-e58b31de8bf5?w=400&h=400&fit=crop" alt="Emily Chen">
+                    </div>
+                    <div class="team-info">
+                        <h3>Emily Chen</h3>
+                        <p class="team-role">Sommelier</p>
+                        <p class="team-bio">Certified sommelier with expertise in local and international wines</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Milestones Section -->
+    <section class="milestones-section">
+        <div class="container">
+            <div class="section-header">
+                <h2>Our Journey</h2>
+                <p>Milestones that shaped our story</p>
+            </div>
+            <div class="milestones-timeline">
+                <div class="milestone">
+                    <div class="milestone-year">2015</div>
+                    <div class="milestone-content">
+                        <h3>Opening Day</h3>
+                        <p>The Rustic Spoon opens its doors with a mission to bring farm-to-table dining to the community.</p>
+                    </div>
+                </div>
+                <div class="milestone">
+                    <div class="milestone-year">2017</div>
+                    <div class="milestone-content">
+                        <h3>First Award</h3>
+                        <p>Recognized as "Best New Restaurant" by the Culinary Association.</p>
+                    </div>
+                </div>
+                <div class="milestone">
+                    <div class="milestone-year">2019</div>
+                    <div class="milestone-content">
+                        <h3>Expansion</h3>
+                        <p>Launched our private dining and event space for special occasions.</p>
+                    </div>
+                </div>
+                <div class="milestone">
+                    <div class="milestone-year">2021</div>
+                    <div class="milestone-content">
+                        <h3>Sustainability Certification</h3>
+                        <p>Achieved Green Restaurant Certification for our environmental practices.</p>
+                    </div>
+                </div>
+                <div class="milestone">
+                    <div class="milestone-year">2024</div>
+                    <div class="milestone-content">
+                        <h3>Community Impact</h3>
+                        <p>Partnered with local schools to promote nutrition education and sustainable farming.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>The Rustic Spoon</h3>
+                    <p>Farm-to-table dining at its finest. Fresh ingredients, unforgettable experiences.</p>
+                    <div class="social-links">
+                        <a href="#" class="social-link">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M24 4.557c-.883.392-1.832.656-2.828.775 1.017-.609 1.798-1.574 2.165-2.724-.951.564-2.005.974-3.127 1.195-.897-.957-2.178-1.555-3.594-1.555-3.179 0-5.515 2.966-4.797 6.045-4.091-.205-7.719-2.165-10.148-5.144-1.29 2.213-.669 5.108 1.523 6.574-.806-.026-1.566-.247-2.229-.616-.054 2.281 1.581 4.415 3.949 4.89-.693.188-1.452.232-2.224.084.626 1.956 2.444 3.379 4.6 3.419-2.07 1.623-4.678 2.348-7.29 2.04 2.179 1.397 4.768 2.212 7.548 2.212 9.142 0 14.307-7.721 13.995-14.646.962-.695 1.797-1.562 2.457-2.549z"/>
+                            </svg>
+                        </a>
+                        <a href="#" class="social-link">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+                            </svg>
+                        </a>
+                        <a href="#" class="social-link">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M22.675 0h-21.35c-.732 0-1.325.593-1.325 1.325v21.351c0 .731.593 1.324 1.325 1.324h11.495v-9.294h-3.128v-3.622h3.128v-2.671c0-3.1 1.893-4.788 4.659-4.788 1.325 0 2.463.099 2.795.143v3.24l-1.918.001c-1.504 0-1.795.715-1.795 1.763v2.313h3.587l-.467 3.622h-3.12v9.293h6.116c.73 0 1.323-.593 1.323-1.325v-21.35c0-.732-.593-1.325-1.325-1.325z"/>
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+                <div class="footer-section">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="menu.html">Menu</a></li>
+                        <li><a href="about.html">About</a></li>
+                        <li><a href="contact.html">Reservations</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Information</h4>
+                    <ul>
+                        <li><a href="#">Private Events</a></li>
+                        <li><a href="#">Gift Cards</a></li>
+                        <li><a href="#">Careers</a></li>
+                        <li><a href="#">Privacy Policy</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Newsletter</h4>
+                    <p>Subscribe for special offers and updates</p>
+                    <form class="newsletter-form">
+                        <input type="email" placeholder="Your email" required>
+                        <button type="submit">Subscribe</button>
+                    </form>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 The Rustic Spoon. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Back to Top Button -->
+    <button class="back-to-top" id="backToTop" onclick="scrollToTop()">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <polyline points="18 15 12 9 6 15"></polyline>
+        </svg>
+    </button>
+
+    <!-- Cookie Consent Banner -->
+    <div class="cookie-consent" id="cookieConsent">
+        <div class="cookie-content">
+            <p>We use cookies to enhance your experience. By continuing to visit this site you agree to our use of cookies.</p>
+            <div class="cookie-buttons">
+                <button class="cookie-btn accept" onclick="acceptCookies()">Accept</button>
+                <button class="cookie-btn decline" onclick="declineCookies()">Decline</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Customer Account Modal -->
+    <div class="account-modal" id="accountModal" aria-hidden="true">
+        <div class="account-dialog" role="dialog" aria-modal="true" aria-label="Customer account">
+            <button class="account-close" type="button" onclick="closeAuthModal()" aria-label="Close">&times;</button>
+            <section class="auth-view" data-auth-view="login"><p class="account-eyebrow">The Rustic Spoon</p><h2>Welcome back</h2><form id="loginForm" class="account-form"><label>Email<input name="loginEmail" type="email" required autocomplete="email"></label><label>Password<input name="loginPassword" type="password" required autocomplete="current-password"></label><button class="account-primary" type="submit">Sign in</button></form><p class="auth-switch">New here? <button type="button" data-auth-switch="register">Create an account</button></p></section>
+            <section class="auth-view" data-auth-view="register" hidden><p class="account-eyebrow">Create your account</p><h2>Save your favourites</h2><form id="registerForm" class="account-form"><label>Name<input name="registerName" type="text" required maxlength="60" autocomplete="name"></label><label>Email<input name="registerEmail" type="email" required autocomplete="email"></label><label>Password<input name="registerPassword" type="password" required minlength="6" autocomplete="new-password"></label><label class="account-check"><input name="marketingOptIn" type="checkbox"> Send me offers and café updates</label><button class="account-primary" type="submit">Create account</button></form><p class="auth-switch">Already have an account? <button type="button" data-auth-switch="login">Sign in</button></p></section>
+            <section class="auth-view" data-auth-view="account" hidden><div id="accountPanel"></div></section>
+        </div>
+    </div>
+
+    <!-- Product Detail Modal -->
+    <div class="product-modal" id="productModal">
+        <div class="modal-overlay" onclick="closeProductModal()"></div>
+        <div class="modal-content">
+            <button class="modal-close" onclick="closeProductModal()">&times;</button>
+            <div class="modal-body">
+                <div class="modal-image-container">
+                    <img id="modalImage" src="" alt="" class="modal-image">
+                    <div class="modal-image-gallery">
+                        <div class="gallery-thumb active" onclick="changeModalImage(this)">
+                            <img src="" alt="Thumbnail 1">
+                        </div>
+                        <div class="gallery-thumb" onclick="changeModalImage(this)">
+                            <img src="" alt="Thumbnail 2">
+                        </div>
+                        <div class="gallery-thumb" onclick="changeModalImage(this)">
+                            <img src="" alt="Thumbnail 3">
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-details">
+                    <div class="modal-category" id="modalCategory"></div>
+                    <h2 class="modal-title" id="modalTitle"></h2>
+                    <div class="modal-rating" id="modalRating"></div>
+                    <div class="modal-price" id="modalPrice"></div>
+                    <div class="modal-description" id="modalDescription"></div>
+                    <div class="modal-dietary" id="modalDietary"></div>
+                    
+                    <div class="modal-features">
+                        <h3>Key Features</h3>
+                        <ul id="modalFeatures">
+                            <li>✓ Fresh ingredients sourced locally</li>
+                            <li>✓ Prepared by our expert chefs</li>
+                            <li>✓ Made to order for optimal freshness</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="modal-nutrition">
+                        <h3>Nutritional Information</h3>
+                        <div class="nutrition-grid">
+                            <div class="nutrition-item">
+                                <span class="nutrition-label">Calories</span>
+                                <span class="nutrition-value" id="modalCalories">450 kcal</span>
+                            </div>
+                            <div class="nutrition-item">
+                                <span class="nutrition-label">Protein</span>
+                                <span class="nutrition-value" id="modalProtein">25g</span>
+                            </div>
+                            <div class="nutrition-item">
+                                <span class="nutrition-label">Carbs</span>
+                                <span class="nutrition-value" id="modalCarbs">30g</span>
+                            </div>
+                            <div class="nutrition-item">
+                                <span class="nutrition-label">Fat</span>
+                                <span class="nutrition-value" id="modalFat">18g</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="modal-actions">
+                        <button class="modal-action-btn primary" onclick="orderNow()">
+                            <span>Order Now</span>
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M12 5v14M5 12h14"/>
+                            </svg>
+                        </button>
+                        <button class="modal-action-btn secondary" onclick="addToFavorites()">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
+                            </svg>
+                            <span>Add to Favorites</span>
+                        </button>
+                    </div>
+                    
+                    <div class="modal-reviews">
+                        <h3>Customer Reviews</h3>
+                        <div class="review-item">
+                            <div class="review-header">
+                                <strong>John D.</strong>
+                                <span class="review-stars">★★★★★</span>
+                            </div>
+                            <p class="review-text">Absolutely delicious! The flavors were perfectly balanced and the presentation was beautiful.</p>
+                        </div>
+                        <div class="review-item">
+                            <div class="review-header">
+                                <strong>Sarah M.</strong>
+                                <span class="review-stars">★★★★☆</span>
+                            </div>
+                            <p class="review-text">Great dish, fresh ingredients. Will definitely order again!</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="firebase-config.js"></script>
+    <script src="script.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-firestore-compat.js"></script>
+    <script src="auth.js"></script>
+</body>
+</html>
